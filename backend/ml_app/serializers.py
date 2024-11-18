@@ -8,6 +8,7 @@ class ExpenseForecastSerializer(serializers.Serializer):
         )
     )
 
+
 class LoanEligibilitySerializer(serializers.Serializer):
     Gender = serializers.ChoiceField(choices=['Male', 'Female'])
     Married = serializers.ChoiceField(choices=['Yes', 'No'])
@@ -20,3 +21,12 @@ class LoanEligibilitySerializer(serializers.Serializer):
     Loan_Amount_Term = serializers.FloatField()
     Credit_History = serializers.IntegerField()
     Property_Area = serializers.ChoiceField(choices=['Urban', 'Semiurban', 'Rural'])
+
+
+class GroupExpenseForecastSerializer(serializers.Serializer):
+    data = serializers.ListField(
+        child=serializers.ListField(
+            child=serializers.FloatField()
+        )
+    )
+

@@ -1,8 +1,8 @@
 # ml_app/views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ExpenseForecastSerializer, LoanEligibilitySerializer
-from .predict import predict_expenses, predict_loan_eligibility
+from .serializers import ExpenseForecastSerializer, LoanEligibilitySerializer, GroupExpenseForecastSerializer
+from .predict import predict_expenses, predict_loan_eligibility, predict_group_expenses
 
 class ExpenseForecastView(APIView):
     def post(self, request):
@@ -18,4 +18,12 @@ class LoanEligibilityView(APIView):
         if serializer.is_valid():
             eligibility = predict_loan_eligibility(serializer.validated_data)
             return Response({"eligibility": eligibility})
+        return Response(serializer.errors, status=400)
+
+class GroupExpenseForecastView(APIView):
+    def post(self, request):
+        serializer = GroupExpenseForecastSerializer(data=request.data)
+        if serializer.is_valid():
+            prediction = predict_group_expenses(serializer.validated_data['data'])
+            return Response({"prediction": prediction})
         return Response(serializer.errors, status=400)
