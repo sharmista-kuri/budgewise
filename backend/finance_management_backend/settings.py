@@ -27,7 +27,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['52.91.96.86', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['52.91.96.86', 'localhost', '127.0.0.1']
 # For testing only, you can use:
 ALLOWED_HOSTS = ['*']
 
