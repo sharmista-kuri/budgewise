@@ -30,3 +30,9 @@ class GroupExpenseForecastSerializer(serializers.Serializer):
         )
     )
 
+class AnomalyDetectionSerializer(serializers.Serializer):
+    data = serializers.ListField(
+        child=serializers.DictField(
+            child=serializers.CharField() if 'Category' else serializers.FloatField()
+        )
+    )
